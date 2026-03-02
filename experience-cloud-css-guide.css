@@ -1,0 +1,381 @@
+/* 
+   Experience Cloud CSS Style Guide - Recommended Approach
+   Based on Salesforce Lightning Design System + Modern CSS
+*/
+
+/* ===== CSS CUSTOM PROPERTIES (DESIGN TOKENS) ===== */
+:root {
+  /* Brand Colors - Override SLDS defaults */
+  --brand-primary: #1e3a8a;        /* Your navy blue */
+  --brand-secondary: #10b981;      /* Your green */
+  --brand-accent: #f59e0b;         /* Warning/highlight color */
+  
+  /* Extended Color Palette */
+  --color-background: #ffffff;
+  --color-background-alt: #f8fafc;
+  --color-text: #1a202c;
+  --color-text-secondary: #718096;
+  --color-border: #e2e8f0;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  
+  /* Spacing Scale (follows SLDS pattern) */
+  --spacing-xx-small: 0.25rem;  /* 4px */
+  --spacing-x-small: 0.5rem;    /* 8px */
+  --spacing-small: 0.75rem;     /* 12px */
+  --spacing-medium: 1rem;       /* 16px */
+  --spacing-large: 1.5rem;      /* 24px */
+  --spacing-x-large: 2rem;      /* 32px */
+  --spacing-xx-large: 3rem;     /* 48px */
+  
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;  /* 4px */
+  --border-radius-md: 0.5rem;   /* 8px */
+  --border-radius-lg: 0.75rem;  /* 12px */
+  --border-radius-xl: 1rem;     /* 16px */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* ===== SLDS OVERRIDE PATTERNS ===== */
+
+/* Override SLDS brand colors with your colors */
+.slds-brand {
+  --sds-c-brand: var(--brand-primary);
+  --sds-c-brand-accessible: var(--brand-primary);
+}
+
+/* Custom button styles using SLDS base + your branding */
+.btn-brand-primary {
+  @extend .slds-button;
+  @extend .slds-button_brand;
+  background-color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+  transition: all var(--transition-fast);
+}
+
+.btn-brand-primary:hover {
+  background-color: color-mix(in srgb, var(--brand-secondary) 85%, black);
+  transform: translateY(-1px);
+}
+
+/* ===== COMPONENT PATTERNS ===== */
+
+/* Card Component - Experience Cloud Optimized */
+.ec-card {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-large);
+  transition: all var(--transition-base);
+}
+
+.ec-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.ec-card__header {
+  margin-bottom: var(--spacing-medium);
+  padding-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ec-card__title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.ec-card__content {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Hero Section - Experience Cloud Pattern */
+.ec-hero {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, color-mix(in srgb, var(--brand-primary) 80%, black) 100%);
+  color: white;
+  padding: var(--spacing-xx-large) 0;
+  text-align: center;
+}
+
+.ec-hero__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-large);
+  line-height: 1.2;
+}
+
+.ec-hero__subtitle {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-x-large);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Navigation - Experience Cloud Header */
+.ec-nav {
+  background: var(--brand-primary);
+  padding: var(--spacing-medium) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.ec-nav__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-large);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ec-nav__logo {
+  color: white;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ec-nav__menu {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-x-large);
+  margin: 0;
+  padding: 0;
+}
+
+.ec-nav__link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.ec-nav__link:hover {
+  color: var(--brand-secondary);
+}
+
+/* ===== RESPONSIVE PATTERNS ===== */
+
+/* Mobile-first breakpoints */
+@media (max-width: 768px) {
+  .ec-hero__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .ec-nav__menu {
+    display: none; /* Implement mobile menu */
+  }
+  
+  .ec-card {
+    padding: var(--spacing-medium);
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ec-hero__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .ec-hero__title {
+    font-size: 4.5rem;
+  }
+}
+
+/* ===== UTILITY CLASSES (Experience Cloud Specific) ===== */
+
+/* Spacing utilities that complement SLDS */
+.ec-mt-auto { margin-top: auto; }
+.ec-mb-auto { margin-bottom: auto; }
+.ec-mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Text utilities */
+.ec-text-brand { color: var(--brand-primary); }
+.ec-text-brand-secondary { color: var(--brand-secondary); }
+.ec-text-muted { color: var(--color-text-secondary); }
+
+/* Background utilities */
+.ec-bg-brand { background-color: var(--brand-primary); }
+.ec-bg-brand-secondary { background-color: var(--brand-secondary); }
+.ec-bg-alt { background-color: var(--color-background-alt); }
+
+/* Border utilities */
+.ec-border-brand { border-color: var(--brand-primary); }
+.ec-border-brand-secondary { border-color: var(--brand-secondary); }
+
+/* ===== SLDS INTEGRATION EXAMPLES ===== */
+
+/* Combining SLDS with custom styles */
+.ec-form-group {
+  @extend .slds-form-element;
+  margin-bottom: var(--spacing-large);
+}
+
+.ec-input {
+  @extend .slds-input;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+}
+
+.ec-input:focus {
+  border-color: var(--brand-secondary);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.ec-button-group {
+  @extend .slds-button-group;
+  gap: var(--spacing-small);
+}
+
+/* ===== ACCESSIBILITY PATTERNS ===== */
+
+/* Focus states */
+.ec-focusable:focus {
+  outline: 2px solid var(--brand-secondary);
+  outline-offset: 2px;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: #000000;
+    --color-text: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== EXPERIENCE CLOUD SPECIFIC OVERRIDES ===== */
+
+/* Community header customizations */
+.siteforceThemeLayoutHeaderContainer {
+  background: var(--brand-primary) !important;
+}
+
+.siteforceThemeLayoutHeader .navbar-brand {
+  color: white !important;
+}
+
+/* Community navigation */
+.siteforceTheme4Navigation .navbar-nav > li > a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color var(--transition-fast);
+}
+
+.siteforceTheme4Navigation .navbar-nav > li > a:hover {
+  color: var(--brand-secondary) !important;
+}
+
+/* Community footer */
+.siteforceThemeLayoutFooter {
+  background: var(--color-background-alt) !important;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ===== COMPONENT LIBRARY EXAMPLES ===== */
+
+/* Stats/Metrics Component */
+.ec-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-large);
+  margin: var(--spacing-xx-large) 0;
+}
+
+.ec-stat {
+  text-align: center;
+  padding: var(--spacing-large);
+  background: var(--color-background);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.ec-stat__number {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--brand-secondary);
+  display: block;
+  margin-bottom: var(--spacing-small);
+}
+
+.ec-stat__label {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Feature Grid Component */
+.ec-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-x-large);
+  margin: var(--spacing-xx-large) 0;
+}
+
+.ec-feature {
+  @extend .ec-card;
+  text-align: center;
+}
+
+.ec-feature__icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-large);
+  color: white;
+  font-size: var(--font-size-2xl);
+}
+
+.ec-feature__title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-medium);
+}
+
+.ec-feature__description {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
